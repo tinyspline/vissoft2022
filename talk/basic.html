@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Basic Idea</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="1300" height="600"
+            style="border: 1px solid #d3d3d3;
+                   margin-right: auto;
+                   margin-left: auto;
+                   display: block;">
+      Your browser doesn't support HTML5 canvas.
+    </canvas>
+    <div style="text-align: center;">
+      <input type="range"
+             min="0"
+             max="1000"
+             value="0"
+             id="morph"
+             style="width: 800px;">
+    </div>
+    <div style="text-align: center;">
+      <button onclick="animateMorphism()">Animate</button>
+    </div>
+  </body>
+  <script>
+    var Module = {onRuntimeInitialized: function() {
+        origin = new Module.BSpline(5);
+        origin.controlPoints = [
+            50,  500, // P1
+            200, 250, // P2
+            350, 400, // P3
+            500, 150, // P4
+            300, 50   // P5
+        ];
+
+        target = new Module.BSpline(5);
+        target.controlPoints = [
+            1100, 550, // P1
+            1200, 400, // P2
+            800,  400, // P3
+            900,  150, // P4
+            1100, 50   // P5
+        ];
+
+        morphism = origin.morphTo(target);
+        update();
+    }};
+  </script>
+  <script src="common.js"></script>
+  <script src="tinyspline.js"></script>
+</html>
